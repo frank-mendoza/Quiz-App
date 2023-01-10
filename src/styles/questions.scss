@@ -1,0 +1,91 @@
+.questions {
+  color: #000;
+
+  &-cat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    
+    &--results {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    img {
+      width: 60px;
+      height: 65px;
+    }
+
+    h3 {
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 38px;
+      letter-spacing: 0.005em;
+      color: inherit;
+    }
+  }
+
+  &-number {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.005em;
+    color: inherit;
+  }
+
+  &-body {
+    width: 100%;
+    text-align: center;
+  }
+  
+  &-content {
+    border: 1px solid #E3E3E3;
+    border-right: 0;
+    margin-bottom: 40px;
+    border-left: 0;
+    font-weight: 400;
+    padding: 50px;
+    font-size: 50px;
+    line-height: 67px;
+  }
+
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    .button {
+      width: 160px;
+      height: 70px;
+      border-radius: 8px;
+      outline: none;
+      border: 0;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 45px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      
+      &:first-child {
+        background: #4FBD1B;
+      }
+
+      &:last-child {
+        background: #E04E10;
+      }
+    }
+  }
+}
