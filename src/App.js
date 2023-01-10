@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/home";
 import QuestionsPage from "./pages/questions";
@@ -29,7 +29,7 @@ function App() {
   const submitAnswer = (answer, record) => {
     if (answer) {
     }
-    if (pageNumber == data.length) {
+    if (pageNumber === data.length) {
       return setpageNumber(data.length);
     }
     setGetAnswer((res) => [
@@ -53,7 +53,7 @@ function App() {
         newText = questionText.replaceAll('""', "");
 
         setSingleQuestion(evt);
-        setQuestion(newText);
+        return setQuestion(newText);
       });
 
   const resetQuestions = () => {

@@ -21,7 +21,7 @@ const QuestionsPage = (props) => {
             <Link
               onClick={() => submitAnswer('true', singleQuestion)}
               className="button"
-              to={pageNumber == data.length ? "/results" : ''}
+              to={pageNumber === data.length ? "/results" : ''}
             >
               <FiCheck size={40} />
               True
@@ -29,7 +29,7 @@ const QuestionsPage = (props) => {
             <Link
               onClick={() => submitAnswer('false', singleQuestion)}
               className="button"
-              to={pageNumber == data.length ? "/results" : ''}
+              to={pageNumber === data.length ? "/results" : ''}
             >
               <MdClose size={40} />
               False
