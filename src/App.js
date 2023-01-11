@@ -5,8 +5,6 @@ import HomePage from "./pages/home";
 import QuestionsPage from "./pages/questions";
 import Results from "./pages/results";
 
-import record from "./questions.json";
-
 import "./styles/main.scss";
 
 function App() {
