@@ -5,6 +5,12 @@
     justify-content: center;
     padding: 20px 0 30px;
     width: 100%;
+    position: relative;
+
+    img {
+      position: absolute;
+      left: 0;
+    }
 
     h3 {
       font-weight: 600;

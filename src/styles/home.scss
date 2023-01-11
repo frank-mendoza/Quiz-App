@@ -18,7 +18,7 @@
     // height: 600px;
     min-height: 500px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
@@ -30,6 +30,7 @@
 
     &--questions {
       padding: 40px 40px 60px;
+      gap: 0;
     }
     &--results {
       padding: 30px 50px;

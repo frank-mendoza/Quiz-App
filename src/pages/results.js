@@ -9,7 +9,7 @@ const Results = ({ answers, resetQuestions }) => {
         <Category answers={answers} results={true} />
         <div className="page-control">
           <button onClick={() => resetQuestions()}>
-            <Link to="/">PLAY AGAIN</Link>
+            <Link to="/">{answers.length === 0 ? 'START PLAYING' : 'PLAY AGAIN'}</Link>
           </button>
         </div>
       </div>

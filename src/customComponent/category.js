@@ -23,25 +23,29 @@ const Category = ({ pageNumber, results, singleQuestion, data, answers }) => {
           </div>
           <div className="results-list">
             <ol>
-              {answers.map((item, key) => (
-                <li key={key}>
-                  <div className="results-content">
-                    <p>{item.question}</p>
-                    <p>
-                      The correct answer is{" "}
-                      <span>{item.correct_answer.toUpperCase()}</span>. You
-                      answered <span>{item.user_answer.toUpperCase()}</span>.
-                    </p>
-                  </div>
-                  <div className="results-icons">
-                    {item.user_answer === item.correct_answer ? (
-                      <FiCheck size={40} color="#83DB14" />
-                    ) : (
-                      <MdClose size={40} color="#E33131" />
-                    )}
-                  </div>
-                </li>
-              ))}
+              {answers.length === 0 ? (
+                <li style={{textAlign: 'center', justifyContent: 'center'}}>No results available</li>
+              ) : (
+                answers.map((item, key) => (
+                  <li key={key}>
+                    <div className="results-content">
+                      <p>{item.question}</p>
+                      <p>
+                        The correct answer is{" "}
+                        <span>{item.correct_answer.toUpperCase()}</span>. You
+                        answered <span>{item.user_answer.toUpperCase()}</span>.
+                      </p>
+                    </div>
+                    <div className="results-icons">
+                      {item.user_answer === item.correct_answer ? (
+                        <FiCheck size={40} color="#83DB14" />
+                      ) : (
+                        <MdClose size={40} color="#E33131" />
+                      )}
+                    </div>
+                  </li>
+                ))
+              )}
             </ol>
           </div>
         </>

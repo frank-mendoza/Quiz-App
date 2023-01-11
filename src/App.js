@@ -16,14 +16,17 @@ function App() {
   const [question, setQuestion] = useState("");
   const [getAnswer, setGetAnswer] = useState([]);
 
-  const newArray = record.results.map((ind, id) => ({
-    ...ind,
-    id: id,
-  }));
-
   useEffect(() => {
-    setData(newArray);
-    filteredList(newArray);
+    fetch("/api")
+      .then((response) => response.json())
+      .then((data) => {
+        const newArray = data.map((ind, id) => ({
+          ...ind,
+          id: id,
+        }));
+        setData(newArray);
+        filteredList(newArray);
+      });
   }, [pageNumber]);
 
   const submitAnswer = (answer, record) => {
@@ -48,9 +51,12 @@ function App() {
     newArray
       .filter((ind) => ind.id === pageNumber)
       .map((evt) => {
-        let questionText = evt.question;
         let newText = evt.question;
-        newText = questionText.replaceAll('""', "");
+        newText = newText
+          .replaceAll("&#039;", "'")
+          .replaceAll("&quot;", "'")
+          .replaceAll("&eacute;", "'")
+          .replaceAll("&rsquo;", "'");
 
         setSingleQuestion(evt);
         return setQuestion(newText);
@@ -59,7 +65,7 @@ function App() {
   const resetQuestions = () => {
     setSingleQuestion({});
     setpageNumber(0);
-    setQuestion('');
+    setQuestion("");
     setGetAnswer([]);
   };
   return (
@@ -79,7 +85,12 @@ function App() {
             }
             path="/quiz"
           />
-          <Route element={<Results resetQuestions={resetQuestions} answers={getAnswer} />} path="/results" />
+          <Route
+            element={
+              <Results resetQuestions={resetQuestions} answers={getAnswer} />
+            }
+            path="/results"
+          />
         </Routes>
       </div>
     </BrowserRouter>
