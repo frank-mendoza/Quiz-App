@@ -5,7 +5,6 @@ import { FiCheck } from "react-icons/fi";
 import logo from "../images/logo.png";
 
 const Category = ({ pageNumber, results, singleQuestion, data, answers }) => {
-
   return (
     <div className={results ? "questions-cat--results" : "questions-cat"}>
       {results && answers ? (
@@ -30,9 +29,15 @@ const Category = ({ pageNumber, results, singleQuestion, data, answers }) => {
               ) : (
                 answers.map((item, key) => (
                   <li key={key}>
-                    {console.log(item.user_answer === 'true')}
+                    {console.log(item.user_answer === "true")}
                     <div className="results-content">
-                      <p>{item.question}</p>
+                      <p>
+                        {item.question
+                          .replaceAll("&#039;", "'")
+                          .replaceAll("&quot;", '"')
+                          .replaceAll("&eacute;", '"')
+                          .replaceAll("&rsquo;", "'")}
+                      </p>
                       <p>
                         The correct answer is{" "}
                         <span
@@ -41,7 +46,7 @@ const Category = ({ pageNumber, results, singleQuestion, data, answers }) => {
                               ? {
                                   color: "#c1e497",
                                 }
-                              : {color: "#FF4D00",}
+                              : { color: "#FF4D00" }
                           }
                         >
                           {item.correct_answer.toUpperCase()}
@@ -53,7 +58,7 @@ const Category = ({ pageNumber, results, singleQuestion, data, answers }) => {
                               ? {
                                   color: "rgb(131, 219, 20)",
                                 }
-                              : {color: "#E23232",}
+                              : { color: "#E23232" }
                           }
                         >
                           {item.user_answer.toUpperCase()}

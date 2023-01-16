@@ -52,8 +52,8 @@ function App() {
         let newText = evt.question;
         newText = newText
           .replaceAll("&#039;", "'")
-          .replaceAll("&quot;", "'")
-          .replaceAll("&eacute;", "'")
+          .replaceAll("&quot;", '"')
+          .replaceAll("&eacute;", '"')
           .replaceAll("&rsquo;", "'");
 
         setSingleQuestion(evt);
