@@ -19,7 +19,7 @@ const QuestionsPage = (props) => {
           <div className="questions-content">{question}</div>
           <div className="questions-button">
             <Link
-              onClick={() => submitAnswer('true', singleQuestion)}
+              onClick={() => submitAnswer('True', singleQuestion)}
               className="button"
               to={pageNumber === data.length ? "/results" : ''}
             >
@@ -27,7 +27,7 @@ const QuestionsPage = (props) => {
               True
             </Link>
             <Link
-              onClick={() => submitAnswer('false', singleQuestion)}
+              onClick={() => submitAnswer('False', singleQuestion)}
               className="button"
               to={pageNumber === data.length ? "/results" : ''}
             >

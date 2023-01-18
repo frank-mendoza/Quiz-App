@@ -15,34 +15,61 @@ function App() {
   const [getAnswer, setGetAnswer] = useState([]);
 
   useEffect(() => {
-    fetch("/api")
-      .then((response) => response.json())
-      .then((data) => {
-        const newArray = data.map((ind, id) => ({
-          ...ind,
-          id: id,
-        }));
-        setData(newArray);
-        filteredList(newArray);
-      });
+    async function fetchdata() {
+      const response = await fetch("/api");
+      const data = await response.json();
+
+      if (!data ) {
+        return data = [];
+      }
+      const newArray = data.map((ind, id) => ({
+        ...ind,
+        id: id,
+      }));
+      setData(newArray);
+      filteredList(newArray);
+    }
+
+    fetchdata();
   }, [pageNumber]);
 
-  const submitAnswer = (answer, record) => {
-    if (answer) {
-    }
-    if (pageNumber === data.length) {
-      return setpageNumber(data.length);
-    }
-    setGetAnswer((res) => [
-      ...res,
+  const submitAnswer = async (answer, record) => {
+    const requestOptions = await fetch(
+      "/api/results",
+
       {
-        ...record,
-        user_answer: answer,
-        correct_answer: record.correct_answer.toLowerCase(),
-        id: record.id,
-      },
-    ]);
-    setpageNumber(pageNumber + 1);
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_answer: answer,
+          record: record,
+        }),
+      }
+    );
+
+    try {
+      const response = await requestOptions.json();
+      if (pageNumber === response.length) {
+        return setpageNumber(response.length);
+      }
+      setpageNumber(pageNumber + 1);
+
+      setSingleQuestion(response.record);
+      console.log(singleQuestion);
+
+      record = response.record;
+      setGetAnswer((res) => [
+        ...res,
+        {
+          ...record,
+          user_answer: answer.toLowerCase(),
+          correct_answer: record.correct_answer.toLowerCase(),
+          id: record.id,
+        },
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const filteredList = (newArray) =>

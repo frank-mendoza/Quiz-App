@@ -14,27 +14,30 @@ function extractData(filePath) {
   return data;
 }
 
-app.post("/api", (req, res) => {
+app.use(express.json({ extended: true, limit: "1mb" }));
 
-  const { id} = req.body
+app.post("/api/results", (req, res) => {
+  const { user_answer, record } = req.body;
 
   const filePath = buildPath();
   const { results } = extractData(filePath);
 
-  const newIncorrectAnswer = results.map((ev) => {
-    if (ev.id === id) {
+  const newIncorrectAnswer = results.map((ev, id) => {
+    if (id === record.id && ev.correct_answer !== user_answer) {
       return {
         ...ev,
-        incorrect_answers: [...ev.incorrect_answers],
+        incorrect_answers: [...ev.incorrect_answers, user_answer],
       };
     }
-
-    console.log(ev);
+    console.log(id === record.id);
     return ev;
   });
 
-  fs.writeFileSync(filePath, JSON.stringify({ newIncorrectAnswer }));
+
+  fs.writeFileSync(filePath, JSON.stringify({ results: newIncorrectAnswer }));
+  res.status(200).json({ record });
 });
+
 app.get("/api", (req, res) => {
   const filePath = buildPath();
   const { results } = extractData(filePath);

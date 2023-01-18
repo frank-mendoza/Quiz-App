@@ -29,7 +29,7 @@ const Category = ({ pageNumber, results, singleQuestion, data, answers }) => {
               ) : (
                 answers.map((item, key) => (
                   <li key={key}>
-                    {console.log(item.user_answer === "true")}
+                   
                     <div className="results-content">
                       <p>
                         {item.question
