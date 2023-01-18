@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import HomePage from "./pages/home";
-import QuestionsPage from "./pages/questions";
-import Results from "./pages/results";
+import HomePage from "./pages/Home";
+import QuestionsPage from "./pages/Questions";
+import Results from "./pages/Results";
 
 import "./styles/main.scss";
 
@@ -28,8 +28,8 @@ function App() {
   }, [pageNumber]);
 
   const submitAnswer = (answer, record) => {
-    if (answer) {
-    }
+    // if (answer) {
+    // }
     if (pageNumber === data.length) {
       return setpageNumber(data.length);
     }

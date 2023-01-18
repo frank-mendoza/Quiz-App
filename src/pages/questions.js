@@ -1,7 +1,7 @@
 import React from "react";
 import { MdClose } from "react-icons/md";
 import { FiCheck } from "react-icons/fi";
-import Category from "../customComponent/category";
+import Category from "../customComponent/Category";
 import { Link } from "react-router-dom";
 
 const QuestionsPage = (props) => {

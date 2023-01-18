@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Category from "../customComponent/category";
+import Category from "../customComponent/Category";
 
 const Results = ({ answers, resetQuestions }) => {
   return (
