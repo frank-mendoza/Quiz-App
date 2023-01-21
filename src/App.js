@@ -18,7 +18,8 @@ function App() {
     fetch("/api")
       .then((response) => response.json())
       .then((data) => {
-        const newArray = data.map((ind, id) => ({
+        const sliceData = data.slice(0, 10)
+        const newArray = sliceData.map((ind, id) => ({
           ...ind,
           id: id,
         }));
@@ -28,8 +29,6 @@ function App() {
   }, [pageNumber]);
 
   const submitAnswer = (answer, record) => {
-    // if (answer) {
-    // }
     if (pageNumber === data.length) {
       return setpageNumber(data.length);
     }
